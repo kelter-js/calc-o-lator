@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react'
+import { Display } from './calculator-display.js'
 
 class App extends PureComponent {
 
@@ -17,7 +18,9 @@ class App extends PureComponent {
             </h2>
             <div className = 'calculator__pannel-wrapper'>
               <div className = 'calculator__display'>
-
+                <div>
+                  <Display />
+                </div>
               </div>
               <div className = 'calculator__buttons'>
                 <ul className = 'calculator__numbers-list'>
