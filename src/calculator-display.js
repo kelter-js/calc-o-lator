@@ -9,17 +9,25 @@ class Display extends PureComponent {
 
     return (
       <React.Fragment>
-        <div className = 'calculator__first-operator'>
-          {firstOperand}
+        <div className = 'calculator__operand-display'>
+          <p className = 'calculator__operand-text'>
+            {firstOperand}
+          </p>
         </div>
-        <p className = 'calculator__operator'>
-          {operator}
-        </p>
-        <div className = 'calculator__second-operator'>
-          {secondOperator}
+        <div className = 'calculator__operator-display'>
+          <p className = 'calculator__operator-text'>
+            {operator}
+          </p>
         </div>
-        <div className = 'calculator__result'>
-          {result}
+        <div className = 'calculator__operand-display'>
+          <p className = 'calculator__operand-text'>
+            {secondOperator}
+          </p>
+        </div>
+        <div className = 'calculator__result-display'>
+          <p className = 'calculator__result-text'>
+            {result}
+          </p>
         </div>
       </React.Fragment>
     );

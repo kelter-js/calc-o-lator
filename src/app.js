@@ -18,9 +18,7 @@ class App extends PureComponent {
             </h2>
             <div className = 'calculator__pannel-wrapper'>
               <div className = 'calculator__display'>
-                <div>
-                  <Display />
-                </div>
+                <Display firstOperand = '1' currentOperator = '+' secondOperator = '1' result = '2'/>
               </div>
               <div className = 'calculator__buttons'>
                 <ul className = 'calculator__numbers-list'>
