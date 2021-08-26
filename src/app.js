@@ -1,5 +1,7 @@
 import React, {PureComponent} from 'react'
 import { Display } from './calculator-display.js'
+import { generateNumbers } from './service.js'
+import { CalculatorNumberButtons } from './calculator-number-buttons.js'
 
 class App extends PureComponent {
 
@@ -22,7 +24,7 @@ class App extends PureComponent {
               </div>
               <div className = 'calculator__buttons'>
                 <ul className = 'calculator__numbers-list'>
-
+                  <CalculatorNumberButtons numbers = {[...generateNumbers(0, 9), '.']}/>
                 </ul>
                 <ul className = 'calculator__functions-list'>
 

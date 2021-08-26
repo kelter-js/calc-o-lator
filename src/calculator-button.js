@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 
-class Button extends PureComponent {
+class CalculatorButton extends PureComponent {
   render () {
     const value = this.props.value;
     const theme = this.props.theme;
@@ -11,3 +11,5 @@ class Button extends PureComponent {
     );
   }
 }
+
+export { CalculatorButton }
