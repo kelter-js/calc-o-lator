@@ -1,7 +1,8 @@
 import React, {PureComponent} from 'react'
 import { Display } from './calculator-display.js'
 import { generateNumbers } from './service.js'
-import { CalculatorNumberButtons } from './calculator-number-buttons.js'
+import { CalculatorButtonsCreator } from './calculator-buttons-creator.js'
+import { Constants } from './constants.js'
 
 class App extends PureComponent {
 
@@ -24,10 +25,10 @@ class App extends PureComponent {
               </div>
               <div className = 'calculator__buttons'>
                 <ul className = 'calculator__numbers-list'>
-                  <CalculatorNumberButtons numbers = {[...generateNumbers(0, 9), '.']}/>
+                  <CalculatorButtonsCreator numbers = {[...generateNumbers(0, 9), '.']} theme = 'calculator__number-button'/>
                 </ul>
                 <ul className = 'calculator__functions-list'>
-
+                  <CalculatorButtonsCreator numbers = {Constants.getFunctionButtons} theme = 'calculator__number-button'/>
                 </ul>
               </div>
             </div>
