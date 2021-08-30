@@ -3,6 +3,7 @@ import { Display } from './calculator-display.js'
 import { generateNumbers } from './service.js'
 import { CalculatorButtonsCreator } from './calculator-buttons-creator.js'
 import { Constants } from './constants.js'
+import { ThemeContext } from './theme-context.js'
 
 class App extends PureComponent {
 
