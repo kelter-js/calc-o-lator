@@ -6,6 +6,47 @@ import { Constants } from './constants.js'
 import { ThemeContext } from './theme-context.js'
 
 class App extends PureComponent {
+  #exceptionSign;
+
+  constructor (props) {
+    super(props);
+
+    this.#exceptionSign = '.';
+
+    this.state = {
+      'firstOperand': '',
+      'secondOperand': '',
+      'operationSign': '',
+      'result': '',
+      'isCalculating': false,
+    };
+
+    this.onNumberClick = this.onNumberClick.bind(this);
+  }
+
+  _isValueSeparated () {
+    if (this.state.isCalculating) {
+      return this.state.secondOperand.includes(this.#exceptionSign);
+    }
+    return this.state.firstOperand.includes(this.#exceptionSign);
+  }
+
+  onNumberClick (value) {
+    if (value === this.#exceptionSign && this._isValueSeparated()) {
+      return;
+    }
+
+    if (this.state.isCalculating) {
+      this.setState({
+        'secondOperand': this.state.secondOperand + value,
+      });
+      return;
+    }
+
+    this.setState({
+      'firstOperand': this.state.firstOperand + value,
+    });
+  }
 
   render () {
     return (
@@ -22,11 +63,11 @@ class App extends PureComponent {
             </h2>
             <div className = 'calculator__pannel-wrapper'>
               <div className = 'calculator__display'>
-                <Display firstOperand = '1' currentOperator = '+' secondOperator = '1' result = '2'/>
+                <Display firstOperand = {this.state.firstOperand} currentOperator = '+' secondOperator = '1' result = '2'/>
               </div>
               <div className = 'calculator__buttons'>
                 <ul className = 'calculator__numbers-list'>
-                  <CalculatorButtonsCreator numbers = {[...generateNumbers(0, 9), '.']} theme = 'calculator__number-button'/>
+                  <CalculatorButtonsCreator numbers = {[...generateNumbers(0, 9), '.']} theme = 'calculator__number-button' handler = {this.onNumberClick} isFuncButtons = {false}/>
                 </ul>
                 <ul className = 'calculator__functions-list'>
                   <CalculatorButtonsCreator numbers = {Constants.getFunctionButtons} theme = 'calculator__number-button'/>

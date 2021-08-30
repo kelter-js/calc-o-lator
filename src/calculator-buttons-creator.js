@@ -15,15 +15,16 @@ class CalculatorButtonsCreator extends PureComponent {
   render () {
     const currentTheme = this.props.theme;
 
+    const handler = this.props.handler;
     const currentNumbers = this.props.numbers.map((number, index) => {
       if (this.exceptions[`${number}`]) {
         return (
-          <CalculatorButton key = {index} value = {number === 'Sqrt' ? '' : number} theme = {`${currentTheme} ${this.exceptions[number]}`}/>
+          <CalculatorButton key = {index} value = {number === 'Sqrt' ? '' : number} clickHandler = {handler} theme = {`${currentTheme} ${this.exceptions[number]}`}/>
         );
       }
 
       return (
-        <CalculatorButton key = {index} value = {number} theme = {currentTheme}/>
+        <CalculatorButton key = {index} clickHandler = {handler} value = {number} theme = {currentTheme}/>
       );
     });
 
