@@ -7,11 +7,14 @@ import { ThemeContext } from './theme-context.js'
 
 class App extends PureComponent {
   #exceptionSign;
+  #operations;
 
   constructor (props) {
     super(props);
 
     this.#exceptionSign = '.';
+
+    this.#operations = this.props.operations;
 
     this.state = {
       'firstOperand': '',
