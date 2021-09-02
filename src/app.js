@@ -20,11 +20,12 @@ class App extends PureComponent {
       'firstOperand': '',
       'secondOperand': '',
       'operationSign': '',
-      'result': '',
+      'result': 0,
       'isCalculating': false,
     };
 
     this.onNumberClick = this.onNumberClick.bind(this);
+    this.onPlusClick = this.onPlusClick.bind(this);
   }
 
   _isValueSeparated () {
@@ -32,6 +33,20 @@ class App extends PureComponent {
       return this.state.secondOperand.includes(this.#exceptionSign);
     }
     return this.state.firstOperand.includes(this.#exceptionSign);
+  }
+
+  _renderResult () {
+    const currentResult = this.state.result;
+    const operation = this.state.operationSign;
+
+    if (!operation || currentResult) {
+      return currentResult;
+    }
+
+    const firstOperand = this.state.firstOperand;
+    const secondOperand = this.state.secondOperand;
+
+    return this.#operations[operation](firstOperand, secondOperand);
   }
 
   onNumberClick (value) {
@@ -51,7 +66,26 @@ class App extends PureComponent {
     });
   }
 
+  onPlusClick (operation) {
+    const currentCalculation = this.state.isCalculating;
+
+    if (!currentCalculation) {
+      this.setState({
+        isCalculating: !currentCalculation,
+        operationSign: operation,
+      });
+
+      return;
+    }
+
+    this.setState({
+      operationSign: operation,
+    })
+  }
+
   render () {
+    const currentResult = this._renderResult();
+
     return (
       <React.Fragment>
         <header className = 'page-header'>
@@ -66,14 +100,14 @@ class App extends PureComponent {
             </h2>
             <div className = 'calculator__pannel-wrapper'>
               <div className = 'calculator__display'>
-                <Display firstOperand = {this.state.firstOperand} currentOperator = '+' secondOperator = '1' result = '2'/>
+                <Display firstOperand = {this.state.firstOperand} currentOperator = {this.state.operationSign} secondOperator = {this.state.secondOperand} result = {currentResult}/>
               </div>
               <div className = 'calculator__buttons'>
                 <ul className = 'calculator__numbers-list'>
                   <CalculatorButtonsCreator numbers = {[...generateNumbers(0, 9), '.']} theme = 'calculator__number-button' handler = {this.onNumberClick} isFuncButtons = {false}/>
                 </ul>
                 <ul className = 'calculator__functions-list'>
-                  <CalculatorButtonsCreator numbers = {Constants.getFunctionButtons} theme = 'calculator__number-button'/>
+                  <CalculatorButtonsCreator numbers = {Constants.getFunctionButtons} theme = 'calculator__number-button' handler = {this.onPlusClick} isFuncButtons = {false}/>
                 </ul>
               </div>
             </div>

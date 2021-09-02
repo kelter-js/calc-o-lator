@@ -16,8 +16,6 @@ class CalculatorButton extends PureComponent {
     const value = this.props.value;
     const theme = this.props.theme;
 
-    console.log(this.onClickHandler)
-
     return (
       <button className = {theme} type = 'button' onClick = {this.onClickHandler}>
         {value}
