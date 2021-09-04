@@ -19,7 +19,7 @@ class CalculatorButtonsCreator extends PureComponent {
     const currentNumbers = this.props.numbers.map((number, index) => {
       if (this.exceptions[`${number}`]) {
         return (
-          <CalculatorButton key = {index} value = {number === 'Sqrt' ? '' : number} clickHandler = {handler} theme = {`${currentTheme} ${this.exceptions[number]}`}/>
+          <CalculatorButton key = {index} value = {number} clickHandler = {handler} theme = {`${currentTheme} ${this.exceptions[number]}`}/>
         );
       }
 

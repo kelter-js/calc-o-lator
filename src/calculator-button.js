@@ -18,7 +18,7 @@ class CalculatorButton extends PureComponent {
 
     return (
       <button className = {theme} type = 'button' onClick = {this.onClickHandler}>
-        {value}
+        {value === 'Sqrt' ? '' : value}
       </button>
     );
   }
