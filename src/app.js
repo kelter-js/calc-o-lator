@@ -25,7 +25,6 @@ class App extends PureComponent {
       'firstOperand': '',
       'secondOperand': '',
       'operationSign': '',
-      'result': 0,
       'isCalculating': false,
     };
 
@@ -54,14 +53,13 @@ class App extends PureComponent {
   }
 
   _calculateResult () {
-    const currentResult = this.state.result;
     const operation = this.state.operationSign;
+    const firstOperand = this.state.firstOperand;
 
-    if (!operation || currentResult) {
-      return currentResult;
+    if (!operation) {
+      return firstOperand;
     }
 
-    const firstOperand = this.state.firstOperand;
     const secondOperand = this.state.secondOperand;
 
     return this._operate(operation, firstOperand, secondOperand);
@@ -76,6 +74,7 @@ class App extends PureComponent {
       this.setState({
         'secondOperand': this.state.secondOperand + value,
       });
+
       return;
     }
 
@@ -106,8 +105,25 @@ class App extends PureComponent {
   }
 
   onFunctionClick (operation) {
+
+    const sign = this.state.operationSign;
+
     if (this._checkValueForException(operation)) {
       this._getExceptionFunc(operation);
+
+      return;
+    }
+
+    if (sign) {
+      const firstOperand = this.state.firstOperand;
+      const secondOperand = this.state.secondOperand;
+
+      this.setState({
+        'firstOperand': String(this._operate(sign, firstOperand, secondOperand)),
+        'secondOperand': '',
+        'operationSign': operation,
+        'isCalculating': true,
+      });
 
       return;
     }
@@ -135,7 +151,6 @@ class App extends PureComponent {
       'firstOperand': '',
       'secondOperand': '',
       'operationSign': '',
-      'result': 0,
       'isCalculating': false,
     });
   }
@@ -147,20 +162,18 @@ class App extends PureComponent {
 
     if (!secondOperand) {
       this.setState({
-        'firstOperand': '',
+        'firstOperand': firstOperand,
         'secondOperand': '',
         'operationSign': '',
-        'result': firstOperand,
         'isCalculating': false,
       });
       return;
     }
 
     this.setState({
-      'firstOperand': '',
+      'firstOperand': String(this._operate(operation, firstOperand, secondOperand)),
       'secondOperand': '',
       'operationSign': '',
-      'result': this._operate(operation, firstOperand, secondOperand),
       'isCalculating': false,
     });
   }
