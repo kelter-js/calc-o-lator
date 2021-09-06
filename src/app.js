@@ -2,13 +2,14 @@ import React, {PureComponent} from 'react'
 import { Display } from './calculator-display.js'
 import { generateNumbers } from './service.js'
 import { CalculatorButtonsCreator } from './calculator-buttons-creator.js'
-import { Constants } from './constants.js'
 import { ThemeContext } from './theme-context.js'
 import { operations } from './operations.js'
 
 class App extends PureComponent {
   #exceptionSigns;
   #operations;
+  #numbers;
+  #functions;
 
   constructor (props) {
     super(props);
@@ -21,6 +22,8 @@ class App extends PureComponent {
 
     this.#operations = this.props.operations;
 
+    this.#numbers = [...generateNumbers(0, 9), '.'];
+
     this.state = {
       'firstOperand': '',
       'secondOperand': '',
@@ -32,6 +35,25 @@ class App extends PureComponent {
     this.onFunctionClick = this.onFunctionClick.bind(this);
     this._calculate = this._calculate.bind(this);
     this._clear = this._clear.bind(this);
+    this._onKeyDown = this._onKeyDown.bind(this);
+  }
+
+  componentDidMount () {
+    document.addEventListener('keydown', this._onKeyDown);
+  }
+
+  componentWillUnmount () {
+    document.removeEventListener('keydown', this._onKeyDown);
+  }
+
+  _onKeyDown (e) {
+    const target = e.key;
+    const allowedKeys = [...this.#numbers, ...this.props.funcButtons, 'Enter', 'Backspace', 'Escape'];
+
+    if (!allowedKeys.includes(target)) {
+      return;
+    }
+
   }
 
   _checkValueForSign (sign, value) {
@@ -199,10 +221,10 @@ class App extends PureComponent {
               </div>
               <div className = 'calculator__buttons'>
                 <ul className = 'calculator__numbers-list'>
-                  <CalculatorButtonsCreator numbers = {[...generateNumbers(0, 9), '.']} theme = 'calculator__number-button' handler = {this.onNumberClick} isFuncButtons = {false}/>
+                  <CalculatorButtonsCreator numbers = {this.#numbers} theme = 'calculator__number-button' handler = {this.onNumberClick} isFuncButtons = {false}/>
                 </ul>
                 <ul className = 'calculator__functions-list'>
-                  <CalculatorButtonsCreator numbers = {Constants.getFunctionButtons} theme = 'calculator__number-button' handler = {this.onFunctionClick} isFuncButtons = {false}/>
+                  <CalculatorButtonsCreator numbers = {this.props.funcButtons} theme = 'calculator__number-button' handler = {this.onFunctionClick} isFuncButtons = {false}/>
                 </ul>
               </div>
             </div>

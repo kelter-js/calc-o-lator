@@ -1,5 +1,5 @@
 function* generateNumbers (start, end) {
-  for (let i = start; i <= end; i++) yield i;
+  for (let i = start; i <= end; i++) yield String(i);
 }
 
 export { generateNumbers }
