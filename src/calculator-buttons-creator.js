@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react'
 import { CalculatorButton } from './calculator-button.js'
+import { ThemeContext } from './theme-context.js'
 
 class CalculatorButtonsCreator extends PureComponent {
 
@@ -14,17 +15,33 @@ class CalculatorButtonsCreator extends PureComponent {
 
   render () {
     const currentTheme = this.props.theme;
-
     const handler = this.props.handler;
+
     const currentNumbers = this.props.numbers.map((number, index) => {
       if (this.exceptions[`${number}`]) {
         return (
-          <CalculatorButton key = {index} value = {number} clickHandler = {handler} theme = {`${currentTheme} ${this.exceptions[number]}`}/>
+          <ThemeContext.Consumer key = {index}>
+            {({theme, changeTheme}) => {
+              return (
+                <>
+                  <CalculatorButton value = {number} clickHandler = {handler} theme = {`${currentTheme} ${this.exceptions[number]} ${theme.button}`}/>
+                </>
+              );
+            }}
+          </ThemeContext.Consumer>
         );
       }
 
       return (
-        <CalculatorButton key = {index} clickHandler = {handler} value = {number} theme = {currentTheme}/>
+        <ThemeContext.Consumer key = {index}>
+            {({theme, changeTheme}) => {
+              return (
+                <>
+                  <CalculatorButton clickHandler = {handler} value = {number} theme = {`${currentTheme} ${theme.button}`}/>
+                </>
+              );
+            }}
+        </ThemeContext.Consumer>
       );
     });
 

@@ -3,8 +3,14 @@
 
 .calculator__pannel-wrapper
   padding: 20px
-  border: 6px solid black
-  background-color: $metallic-rgba
+
+.calculator__pannel-wrapper--light
+  background-color: rgba($metallic-rgb, 0.5)
+  border: 6px solid $black
+
+.calculator__pannel-wrapper--dark
+  background-color: rgba($white, 0.3)
+  border: 6px solid $white
 
 .calculator__operand-display
   min-width: 45%
@@ -19,12 +25,18 @@
 .calculator__operand-text
   min-height: 42px
   box-sizing: border-box
-  border: 1px solid $black-rgba
-  background-color: #ffcfdf; background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%)
+  border: 1px solid rgba($black, 0.3)
+
+.calculator__operand-text--light
+  background-image: linear-gradient(315deg, $pink 0%, $darker-blue 74%)
+
+.calculator__operand-text--dark
+  background-image: linear-gradient(to right, rgba(3, 3, 151, .5), rgba(229, 229, 190, .5))
+  color: $white
 
 .calculator__result-text
   min-height: 22px
-  border: 1px solid $black-rgba
+  border: 1px solid rgba($black, 0.3)
 
 .calculator__operand-text,
 .calculator__operator-text,
@@ -82,11 +94,20 @@
   line-height: 32px
   border: none
   cursor: pointer
-  background-image: linear-gradient($lightest-blue 0%, $lighty-blue 35%, $shade-blue 50%, $dark-blue 51%, $grey-blue 100%)
+  transition: .25s ease-in-out
+  transition-property: background, color
+  background-size: 200% auto
 
   &:hover
     border-radius: 10px
     border: 2px solid grey
+    background-position: right center
+
+.calculator__number-button--light
+  background-image: linear-gradient(to right, $darker-white 0%, $white  51%, $darker-white  100%)
+
+.calculator__number-button--dark
+  background-image: linear-gradient(to right, #FFEEEE 0%, #DDEFBB  51%, #FFEEEE  100%)
 
 .calculator__sqrt-func
   &::before
