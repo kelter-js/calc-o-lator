@@ -105,7 +105,7 @@ class Calculator extends PureComponent {
     const firstOperand = this.state.firstOperand;
     const separator = this.#exceptionSigns[0];
 
-    return this.state.isCalculating ? secondOperand.includes(separator) : firstOperand.includes(separator);
+    return this.state.isCalculating ? String(secondOperand).includes(separator) : String(firstOperand).includes(separator);
   }
 
   _operate (operation, a, b) {
