@@ -4,6 +4,11 @@
 .calculator__pannel-wrapper
   padding: 20px
 
+  @media (max-width: $mobile-width-only)
+    padding: 0
+    padding-top: 10px
+    padding-bottom: 10px
+
 .calculator__pannel-wrapper--light
   background-color: rgba($metallic-rgb, 0.5)
   border: 6px solid $black
@@ -86,6 +91,7 @@
 
   @media (max-width: $mobile-width-only)
     width: 50%
+    margin-left: 5px
 
 .calculator__functions-list
   grid-template-columns: repeat(2, 1fr)
@@ -94,6 +100,7 @@
 
   @media (max-width: $mobile-width-only)
     grid-template-columns: repeat(2, 50px)
+    justify-content: space-around
     width: 46%
 
 .calculator__buttons-zero
