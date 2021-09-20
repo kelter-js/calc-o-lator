@@ -99,9 +99,9 @@
   width: 40%
 
   @media (max-width: $mobile-width-only)
-    grid-template-columns: repeat(2, 50px)
+    grid-template-columns: repeat(2, 36%)
     justify-content: space-around
-    width: 46%
+    width: 45%
 
 .calculator__buttons-zero
   grid-row: 4 / 5
@@ -124,6 +124,15 @@
 
   @media (max-width: $mobile-width-only)
     font-size: 20px
+
+    &:first-of-type
+      font-size: 12px
+
+    &:last-of-type
+      &::before
+        left: 0
+        width: 90.5%
+        margin: 0
 
   &:hover
     border-radius: 10px
