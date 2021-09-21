@@ -1,8 +1,8 @@
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import { ThemeContext } from './theme-context.js'
-import { Header } from './header.js'
-import { Body } from './body.js'
-import { Footer } from './footer.js'
+import { Header } from './components/header/index.js'
+import { Main } from './components/main/index.js'
+import { Footer } from './components/footer/index.js'
 
 class App extends PureComponent {
   #themes;
@@ -60,7 +60,7 @@ class App extends PureComponent {
       <React.Fragment>
         <ThemeContext.Provider value = { this.state }>
           <Header/>
-          <Body/>
+          <Main/>
           <Footer/>
         </ThemeContext.Provider>
       </React.Fragment>

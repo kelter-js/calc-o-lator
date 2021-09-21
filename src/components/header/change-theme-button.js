@@ -1,8 +1,7 @@
-import { ThemeContext } from './theme-context.js'
+import { ThemeContext } from '../../theme-context.js'
 import React from 'react'
 
 class ChangeThemeButton extends React.Component {
-
   render () {
     return (
       <ThemeContext.Consumer>

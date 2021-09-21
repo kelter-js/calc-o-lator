@@ -1,9 +1,8 @@
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import { CalculatorButton } from './calculator-button.js'
-import { ThemeContext } from './theme-context.js'
+import { ThemeContext } from '../../theme-context.js'
 
 class CalculatorButtonsCreator extends PureComponent {
-
   constructor (props) {
     super(props);
 
@@ -20,11 +19,11 @@ class CalculatorButtonsCreator extends PureComponent {
     const currentNumbers = this.props.numbers.map((number, index) => {
       if (this.exceptions[`${number}`]) {
         return (
-          <ThemeContext.Consumer key = {index}>
+          <ThemeContext.Consumer key = { index }>
             {({theme, changeTheme}) => {
               return (
                 <>
-                  <CalculatorButton value = {number} clickHandler = {handler} theme = {`${currentTheme} ${this.exceptions[number]} ${theme.button}`}/>
+                  <CalculatorButton value = { number } clickHandler = { handler } theme = {`${currentTheme} ${this.exceptions[number]} ${theme.button}`}/>
                 </>
               );
             }}

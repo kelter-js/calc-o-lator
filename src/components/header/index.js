@@ -1,8 +1,7 @@
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 import { ChangeThemeButton } from './change-theme-button.js'
 
 class Header extends PureComponent {
-
   render () {
     return (
       <header className = 'page-header'>
@@ -15,7 +14,6 @@ class Header extends PureComponent {
       </header>
     );
   }
-
 }
 
 export { Header }

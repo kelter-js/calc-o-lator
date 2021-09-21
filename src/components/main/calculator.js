@@ -1,8 +1,8 @@
-import React, {PureComponent} from 'react'
-import { generateNumbers } from './service.js'
+import React, { PureComponent } from 'react'
+import { generateNumbers } from '../../service.js'
 import { Display } from './calculator-display.js'
 import { CalculatorButtonsCreator } from './calculator-buttons-creator.js'
-import { ThemeContext } from './theme-context.js'
+import { ThemeContext } from '../../theme-context.js'
 
 class Calculator extends PureComponent {
   #exceptionSigns;

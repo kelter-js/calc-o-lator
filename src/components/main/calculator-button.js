@@ -1,7 +1,6 @@
-import React, {PureComponent} from 'react'
+import React, { PureComponent } from 'react'
 
 class CalculatorButton extends PureComponent {
-
   constructor (props) {
     super(props);
 
@@ -17,8 +16,8 @@ class CalculatorButton extends PureComponent {
     const theme = this.props.theme;
 
     return (
-      <button className = {theme} type = 'button' onClick = {this.onClickHandler}>
-        {value === 'Sqrt' ? '' : value}
+      <button className = { theme } type = 'button' onClick = { this.onClickHandler }>
+        { value === 'Sqrt' ? '' : value }
       </button>
     );
   }

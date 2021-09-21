@@ -1,5 +1,5 @@
-import React, {PureComponent} from 'react'
-import { ThemeContext } from './theme-context.js'
+import React, { PureComponent } from 'react'
+import { ThemeContext } from '../../theme-context.js'
 
 class Footer extends PureComponent {
   render () {

@@ -1,5 +1,5 @@
-import React, {PureComponent} from 'react'
-import { ThemeContext } from './theme-context.js'
+import React, { PureComponent } from 'react'
+import { ThemeContext } from '../../theme-context.js'
 
 class Display extends PureComponent {
   #attentionMessage;
@@ -12,7 +12,7 @@ class Display extends PureComponent {
   _attentionDisplay () {
     return (
       <p className = 'error-message'>
-        {this.#attentionMessage}
+        { this.#attentionMessage }
       </p>
     );
   }
